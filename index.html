@@ -87,6 +87,178 @@
 				</section>
 
 				<section data-background="#692a49">
+					<h3>Centralized</h3>
+          <p>vs</p>
+					<h3>Distributed</h3>
+				</section>
+
+				<section data-background="#692a49">
+					<h3>Centralized version control</h3>
+          <p><img src="centralized-vc.svg"></p>
+				</section>
+
+				<section data-background="#692a49">
+					<h3>Problems</h3>
+          <ul>
+            <li>Single point of failure</li>
+            <li>No offline work</li>
+            <li>Slow operations</li>
+          </ul>
+				</section>
+
+				<section data-background="#692a49">
+					<h3>Distributed version control</h3>
+          <p><img src="distributed-vc.svg"></p>
+				</section>
+
+				<section data-background="#692a49">
+					<h3>Advantages</h3>
+          <ul>
+            <li>Data loss protection</li>
+            <li>Full offline productivity</li>
+            <li>Fast local operations</li>
+            <li>Commit without access</li>
+          </ul>
+				</section>
+
+				<section data-background="#692a49">
+					<h3>Disadvantage</h3>
+          <ul>
+            <li>Slow initial checkout</li>
+          </ul>
+				</section>
+
+				<section data-background="#cb3649">
+					<h2>Data storage in git</h2>
+          <ul>
+            <li>Local storage</li>
+            <li>Leverages file system</li>
+            <li>Stores snapshots</li>
+          </ul>
+				</section>
+
+				<section data-background="#cb3649">
+					<h3>Subversion stores diffs</h3>
+          <p><img src="storage-svn.svg"></p>
+				</section>
+
+				<section data-background="#cb3649">
+					<h3>Git stores snapshots</h3>
+          <p><img src="storage-git.svg"></p>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>Working with git</h2>
+				</section>
+
+				<section data-background="#ea6846">
+					<h3>Initializing a new repo</h3>
+					<pre><code data-trim contenteditable>
+      $ cd /my/code
+      $ git init
+      Initialized empty Git repository in /my/code/.git/
+          </code></pre>
+          <p>All metadata is stored in <code>.git/</code></p>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>Working directory</h2>
+          <ul>
+            <li>SVN: each branch in a folder</li>
+            <li>Git: in-place</li>
+          </ul>
+				</section>
+
+				<section data-background="#ea6846">
+					<h3>Check out a new branch</h3>
+					<pre><code data-trim contenteditable>
+      $ git checkout -b ISSUE-1234
+      Switched to a new branch 'ISSUE-1234'
+          </code></pre>
+          <ul>
+            <li>Branches are cheap</li>
+            <li>Create a new branch before starting work</li>
+          </ul>
+				</section>
+
+				<section data-background="#ea6846">
+					<h3>Committing a file in 2 steps</h3>
+					<pre><code data-trim contenteditable>
+      $ git add myfile.php
+      $ git commit -m "Allow to foo a bar."
+          </code></pre>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>1. Add to staging area</h2>
+					<pre><code data-trim contenteditable>
+      # Add file contents to the index
+      $ git add &lt;path&gt;
+          </code></pre>
+          <ul>
+            <li>AKA the "Index"</li>
+            <li>Contains changes to be committed</li>
+            <li>Allows to selectively pick changes</li>
+            <li>Lets you track a new file (like SVN)</li>
+          </ul>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>2. Commit to repository</h2>
+					<pre><code data-trim contenteditable>
+      # Record changes to the repository
+      $ git commit -m "Log message"
+          </code></pre>
+          <ul>
+            <li>Stores contents of the index</li>
+            <li>Provide a meaningful log message</li>
+          </ul>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>The three states</h2>
+          <ul>
+            <li>Modified</li>
+            <li>Staged</li>
+            <li>Committed</li>
+          </ul>
+				</section>
+
+				<section data-background="#ea6846">
+					<h3>Moving between states</h3>
+          <p><img src="states.svg"></p>
+				</section>
+
+				<section data-background="#ea6846">
+					<h3>Showing a commit</h3>
+					<pre><code data-trim contenteditable>
+      $ git show
+      commit e7a69c08977680bfaa4b85fc2e5f43251ddddcb1
+      Author: Pieter Frenssen <pieter@example.com>
+      Date:   Mon Mar 9 16:20:51 2015 +0100
+
+          Greet the world.
+
+          diff --git a/hello.php b/hello.php
+          @@ -0,0 +1,1 @@
+          +&lt;?php echo "Hello world." ?&gt;
+          </code></pre>
+				</section>
+
+				<section data-background="#ea6846">
+					<h2>The SHA-1 hash</h2>
+					<pre><code data-trim contenteditable>
+        $ git show
+        commit e7a69c08977680bfaa4b85fc2e5f43251ddddcb1
+          </code></pre>
+          <ul>
+            <li>Checksum of entire code base</li>
+            <li>Uniquely identifies snapshot</li>
+            <li>Ensures data integrity</li>
+          </ul>
+				</section>
+
+				<section data-background="#692a49">
 					<h3>Resources</h3>
 					<ul>
 						<li>http://ericsink.com/vcbe/html/</li>
@@ -451,7 +623,6 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
