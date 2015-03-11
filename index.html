@@ -47,425 +47,295 @@
         </section>
 
         <section data-background="#3f6160">
-          <h2>A bit of history</h2>
+          <h2>Install</h2>
+          <p><a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></p>
         </section>
 
         <section data-background="#3f6160">
-          <h2>First generation</h2>
-          <h3>SCCS (1972), RCS (1984)</h3>
-          <ul>
-            <li>No networking</li>
-            <li>One file at a time</li>
-            <li>One developer</li>
-            <li>File locking</li>
-          </ul>
-        </section>
-
-        <section data-background="#3f6160">
-          <h2>Second generation</h2>
-          <h3>CVS (1990), SVN (2000)</h3>
-          <ul>
-            <li>Client - server architecture</li>
-            <li>Manages versions of files</li>
-            <li>Directory based branching</li>
-            <li>Merge before commit</li>
-          </ul>
-        </section>
-
-        <section data-background="#3f6160">
-          <h2>Third generation</h2>
-          <h3>Bitkeeper (2000)</h3>
-          <h3>Bazaar, Mercurial, Git (2005)</h3>
-          <ul>
-            <li>Peer-to-peer architecture</li>
-            <li>Manages changesets</li>
-            <li>Tree based branching</li>
-            <li>Commit before merge</li>
-          </ul>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Centralized</h3>
-          <p>vs</p>
-          <h3>Distributed</h3>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Centralized version control</h3>
-          <p><img src="centralized-vc.svg"></p>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Problems</h3>
-          <ul>
-            <li>Single point of failure</li>
-            <li>No offline work</li>
-            <li>Slow operations</li>
-          </ul>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Distributed version control</h3>
-          <p><img src="distributed-vc.svg"></p>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Advantages</h3>
-          <ul>
-            <li>Data loss protection</li>
-            <li>Full offline productivity</li>
-            <li>Fast local operations</li>
-            <li>Commit without access</li>
-          </ul>
-        </section>
-
-        <section data-background="#692a49">
-          <h3>Disadvantage</h3>
-          <ul>
-            <li>Slow initial checkout</li>
-          </ul>
-        </section>
-
-        <section data-background="#cb3649">
-          <h2>Data storage in git</h2>
-          <ul>
-            <li>Local storage</li>
-            <li>Leverages file system</li>
-            <li>Stores snapshots</li>
-          </ul>
-        </section>
-
-        <section data-background="#cb3649">
-          <h3>Subversion stores diffs</h3>
-          <p><img src="storage-svn.svg"></p>
-        </section>
-
-        <section data-background="#cb3649">
-          <h3>Git stores snapshots</h3>
-          <p><img src="storage-git.svg"></p>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>Working with git</h2>
-        </section>
-
-        <section data-background="#ea6846">
-          <h3>Initializing a new repo</h3>
+          <h2>Configure</h2>
           <pre><code data-trim contenteditable>
-      $ cd /my/code
+      $ git config --global user.name "Your name"
+      $ git config --global user.email "email@example.com"
+
+      $ git config --global core.editor "/usr/bin/vim"
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Create a test project</h2>
+          <pre><code data-trim contenteditable>
+      $ cd /my/working/directory
+      $ mkdir git-workshop
+      $ cd git-workshop
+      $ vim hello.php
+          </code></pre>
+          <pre><code data-trim contenteditable>
+      &lt;?php
+        echo "Hello world!\n";
+      ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Initialize repository</h2>
+          <pre><code data-trim contenteditable>
       $ git init
-      Initialized empty Git repository in /my/code/.git/
+      Initialized empty Git repository in /my/path/.git/
           </code></pre>
-          <ul>
-            <li>All metadata is stored in <code>.git/</code></li>
-            <li>One working directory for all branches</li>
-          </ul>
         </section>
 
-        <section data-background="#ea6846">
-          <h3>Creating a new branch</h3>
+        <section data-background="#692a49">
+          <h2>Add and commit file</h2>
           <pre><code data-trim contenteditable>
-      $ git checkout -b ISSUE-1234
-      Switched to a new branch 'ISSUE-1234'
+      $ git add hello.php
           </code></pre>
-          <ul>
-            <li>Branches are cheap</li>
-            <li>Create a new branch before starting work</li>
-          </ul>
-        </section>
-
-        <section data-background="#ea6846">
-          <h3>Check out a branch to create it?</h3>
           <pre><code data-trim contenteditable>
-      # Create a new branch.
-      $ git branch ISSUE-1234
-
-      # Check out the branch.
-      $ git checkout ISSUE-1234
+      $ git commit -m "Initial commit."
           </code></pre>
-
           <pre><code data-trim contenteditable>
-      # Check out a newly created branch.
-      $ git checkout -b ISSUE-1234
+      [master (root-commit) 1f73498] Initial commit.
+       1 file changed, 3 insertions(+)
+       create mode 100644 hello.php
           </code></pre>
         </section>
 
-        <section data-background="#ea6846">
-          <h3>Committing a change in 2 steps</h3>
-          <pre><code data-trim contenteditable>
-      $ git add myfile.php
-      $ git commit -m "Allow to foo a bar."
-          </code></pre>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>1. Add to staging area</h2>
-          <pre><code data-trim contenteditable>
-      # Add file contents to the index
-      $ git add &lt;path&gt;
-          </code></pre>
-          <ul>
-            <li>AKA the "Index"</li>
-            <li>Contains changes to be committed</li>
-            <li>Allows to selectively pick changes</li>
-            <li>Lets you track a new file (like SVN)</li>
-          </ul>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>2. Commit to repository</h2>
-          <pre><code data-trim contenteditable>
-      # Record changes to the repository
-      $ git commit -m "Log message"
-          </code></pre>
-          <ul>
-            <li>Stores contents of the index</li>
-            <li>Provide a meaningful log message</li>
-          </ul>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>The three states</h2>
-          <ul>
-            <li>Modified</li>
-            <li>Staged</li>
-            <li>Committed</li>
-          </ul>
-        </section>
-
-        <section data-background="#ea6846">
-          <h3>Moving between states</h3>
-          <p><img src="states.svg"></p>
-        </section>
-
-        <section data-background="#ea6846">
-          <h3>So we have a commit</h3>
-          <p>What is in it?</p>
-          <pre><code data-trim contenteditable>
-      $ git show
-      commit e7a69c08977680bfaa4b85fc2e5f43251ddddcb1
-      Author: Pieter Frenssen &lt;pieter@example.com&gt;
-      Date:   Mon Mar 9 16:20:51 2015 +0100
-
-          Greet the world.
-
-          diff --git a/hello.php b/hello.php
-          @@ -0,0 +1,1 @@
-          +&lt;?php echo "Hello world." ?&gt;
-          </code></pre>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>The SHA-1 hash</h2>
-          <pre><code data-trim contenteditable>
-        commit e7a69c08977680bfaa4b85fc2e5f43251ddddcb1
-          </code></pre>
-          <ul>
-            <li>Checksum of entire code base</li>
-            <li>Uniquely identifies snapshot</li>
-            <li>Ensures data integrity</li>
-          </ul>
-        </section>
-
-        <section data-background="#ea6846">
-          <h2>Refs</h2>
-          <pre><code data-trim contenteditable>
-        $ git checkout e7a69c089
-
-        $ git checkout mybranch
-        $ git checkout 1.3.5
-        $ git checkout origin/develop
-        $ git checkout HEAD
-          </code></pre>
-          <ul>
-            <li>Aliases for a SHA-1 hash</li>
-            <li>Stored in <code>.git/refs</code></li>
-          </ul>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Sharing code</h2>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>Cloning a repository</h3>
-          <pre><code data-trim contenteditable>
-        # Cloning a remote repository
-        $ git clone https://host.com/code.git myrepo
-          </code></pre>
-          <ul>
-            <li>Downloads code</li>
-            <li>Checks out in folder "myrepo"</li>
-            <li>Remote repo = "origin"</li>
-          </ul>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>Adding remote repositories</h3>
-          <pre><code data-trim contenteditable>
-        # Adding a remote to an existing repo
-        $ git remote add myremote https://host.com/somerepo.git
-          </code></pre>
-          <ul>
-            <li>Add as many remotes as needed</li>
-            <li>Push and pull to any repo</li>
-            <li>Diff between any version on any repo</li>
-          </ul>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>Getting code</h3>
-          <pre><code data-trim contenteditable>
-        # Download latest changes
-        $ git fetch myremote
-
-        # Merge with latest upstream code
-        $ git merge myremote/somebranch
-
-        # Shorthand for download + merge
-        $ git pull myremote somebranch
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Pushing code</h2>
-          <pre><code data-trim contenteditable>
-        # First merge the upstream changes
-        $ git pull myrepo mybranch
-
-        # Push our changes to the remote
-        $ git push myrepo mybranch
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>Tracking remote branches</h3>
-          <pre><code data-trim contenteditable>
-        # This is just too verbose
-        $ git pull myremote mybranch
-        $ git push myremote mybranch
-
-        # Link my local branch with the remote
-        $ git branch --set-upstream-to=myremote/mybranch
-
-        # Much better!
-        $ git pull
-        $ git push
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Inspecting stuff</h2>
+        <section data-background="#692a49">
+          <h2>Check status</h2>
           <pre><code data-trim contenteditable>
       $ git status
-      $ git log
-      $ git show &lt;ref&gt;
-      $ git branch -a
-      $ git remote -v
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>Diffs</h3>
-          <pre><code data-trim contenteditable>
-      # Show changes that are not yet added to the index
-      $ git diff
-
-      # Show changes that are about to be committed
-      $ git diff --cached
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h3>More diffing</h3>
-          <pre><code data-trim contenteditable>
-      # Show changes between my code and remote repo
-      $ git diff origin/develop
-
-      # Show changes between two refs
-      $ git diff mybranch..origin/2.0.4
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Cleaning up</h2>
-          <pre><code data-trim contenteditable>
-      # Delete everything from the index
-      $ git reset
-
-      # Delete everything from working copy
-      $ git reset --hard
-
-      # Delete uncommitted files
-      $ git clean -fd
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Searching the history</h2>
-          <pre><code data-trim contenteditable>
-      # Search commit messages
-      $ git log --grep="keywords"
-
-      # Search lines of code
-      $ git log -G"regex"
-
-      # Search when code was added / deleted
-      $ git log -S"regex"
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Temporary storage</h2>
-          <pre><code data-trim contenteditable>
-      # Temporarily stow away all changes
-      $ git stash
-
-      # Restore the changes
-      $ git stash pop
-
-      # Show the list of stashed changes
-      $ git stash list
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>File operations</h2>
-          <pre><code data-trim contenteditable>
-      # Stage the adding of a new file
-      $ git add &lt;filename&gt;
-
-      # Stage the removal of an existing file
-      $ git rm &lt;filename&gt;
-
-      # Stage the renaming / moving of a file
-      $ git mv &lt;filename&gt;
-          </code></pre>
-        </section>
-
-        <section data-background="#ffb354">
-          <h2>Advanced stuff</h2>
-          <pre><code data-trim contenteditable>
-      # Tag a new release
-      $ git tag 2.1.0
-
-      # Find the change that introduced a bug
-      $ git bisect
-
-      # Graphical diff / merge
-      $ git difftool
-      $ git mergetool
+      On branch master
+      nothing to commit, working directory clean
           </code></pre>
         </section>
 
         <section data-background="#692a49">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="https://www.atlassian.com/git/tutorials/">Atlassian git tutorials</a></li>
-            <li><a href="http://www.git-tower.com/blog/git-for-subversion-users-cheat-sheet/">Git for subversion users</a></li>
-            <li><a href="http://rogerdudler.github.io/git-guide/">Git - the simple guide</a></li>
-            <li><a href="http://git-scm.com/book/en/v2">Pro Git - free e-book</a></li>
-          </ul>
+          <h2>Change the code</h2>
+          <pre><code data-trim contenteditable>
+      &lt;?php
+        echo "Hello $argv[1]!\n";
+      ?&gt;
+          </code></pre>
+
+          <pre><code data-trim contenteditable>
+      $ php hello.php Pieter
+      Hello Pieter!
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Check status</h2>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git status
+      On branch master
+      Changes not staged for commit:
+        (use "git add <file>..." to update what will be committed)
+        (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   hello.php
+
+      no changes added to commit (use "git add" and/or "git commit -a")
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Check changes</h3>
+          <pre><code data-trim contenteditable>
+      $ git diff
+      diff --git a/hello.php b/hello.php
+      index b250c0e..ab9a5dd 100644
+      --- a/hello.php
+      +++ b/hello.php
+      @@ -1,3 +1,3 @@
+       &lt;?php
+      -  echo "Hello world!\n";
+      +  echo "Hello $argv[1]!\n";
+       ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Add changes to index</h3>
+          <pre><code data-trim contenteditable>
+      $ git add hello.php
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Check status</h2>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git status
+      On branch master
+      Changes to be committed:
+        (use "git reset HEAD <file>..." to unstage)
+
+        modified:   hello.php
+
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Check changes</h3>
+          <pre><code data-trim contenteditable>
+      $ git diff
+          </code></pre>
+          <p>Nothing is shown, all changes are added to the index</p>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Check changes ready to be committed</h3>
+          <pre><code data-trim contenteditable>
+      $ git diff --staged
+      diff --git a/hello.php b/hello.php
+      index b250c0e..ab9a5dd 100644
+      --- a/hello.php
+      +++ b/hello.php
+      @@ -1,3 +1,3 @@
+       &lt;?php
+      -  echo "Hello world!\n";
+      +  echo "Hello $argv[1]!\n";
+       ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Commit staged changes</h2>
+          <pre><code data-trim contenteditable>
+      $ git commit
+          </code></pre>
+          <p>If the '-m' option is omitted you can enter the log message in an editor.</p>
+          <pre><code data-trim contenteditable class="tiny">
+      Allow to pass user name as an argument.
+
+      # Please enter the commit message for your changes. Lines starting
+      # with '#' will be ignored, and an empty message aborts the commit.
+      # On branch master
+      # Changes to be committed:
+      # modified:   hello.php
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Output</h3>
+          <pre><code data-trim contenteditable>
+      [master 0c6bbfb] Allow to pass user name as an argument.
+       1 file changed, 1 insertion(+), 1 deletion(-)
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Make 2 changes</h2>
+          <pre><code data-trim contenteditable>
+      &lt;?php
+        $name = !empty($argv[1]) ? $argv[1] : 'world';
+        echo "Hello $name!\n";
+      ?&gt;
+          </code></pre>
+          <pre><code data-trim contenteditable>
+      $ git add hello.php
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Make a second change</h2>
+          <pre><code data-trim contenteditable>
+      &lt;?php
+        // Use 'world' as default name.
+        $name = !empty($argv[1]) ? $argv[1] : 'world';
+        echo "Hello $name!\n";
+      ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h2>Check status</h2>
+          <pre><code data-trim contenteditable class="tiny">
+    $ git status
+    On branch master
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+
+      modified:   hello.php
+
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+
+      modified:   hello.php
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Check changes to working directory</h3>
+          <pre><code data-trim contenteditable>
+      $ git diff
+      diff --git a/hello.php b/hello.php
+      index 23fd8b4..0dc8ed4 100644
+      --- a/hello.php
+      +++ b/hello.php
+      @@ -1,4 +1,5 @@
+       &lt;?php
+      +  // Use 'world' as default name.
+         $name = !empty($argv[1]) ? $argv[1] : 'world';
+         echo "Hello $name!\n";
+       ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Check changes ready to be committed</h3>
+          <pre><code data-trim contenteditable>
+      $ git diff --staged
+      diff --git a/hello.php b/hello.php
+      index ab9a5dd..23fd8b4 100644
+      --- a/hello.php
+      +++ b/hello.php
+      @@ -1,3 +1,4 @@
+       &lt;?php
+      -  echo "Hello $argv[1]!\n";
+      +  $name = !empty($argv[1]) ? $argv[1] : 'world';
+      +  echo "Hello $name!\n";
+       ?&gt;
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Commit both change sets</h3>
+          <pre><code data-trim contenteditable>
+      $ git commit -m "Use 'world' as default user name."
+
+      $ git add hello.php
+      $ git commit -m "Add documentation."
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>View history</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git log
+      commit d35818316bc33adbcc5ac3addd5ad915b6ee29c4
+      Author: Pieter Frenssen <pieter@frenssen.be>
+      Date:   Wed Mar 11 12:17:36 2015 +0100
+
+          Add documentation.
+
+      commit 27bebdc99f6adb67c034d2aded5511ea59c4586a
+      Author: Pieter Frenssen <pieter@frenssen.be>
+      Date:   Wed Mar 11 12:17:27 2015 +0100
+
+          Use 'world' as default user name.
+
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>View compact history</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git log --oneline
+      d358183 Add documentation.
+      27bebdc Use 'world' as default user name.
+      0c6bbfb Allow to pass user name as an argument.
+      1f73498 Initial commit.
+          </code></pre>
         </section>
       </div>
     </div>

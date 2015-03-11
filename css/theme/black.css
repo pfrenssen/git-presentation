@@ -146,6 +146,9 @@ body {
   background: #3F3F3F;
   color: #DCDCDC; }
 
+.reveal code.tiny {
+  font-size: 0.8em; }
+
 .reveal table {
   margin: auto;
   border-collapse: collapse;
