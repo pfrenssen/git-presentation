@@ -323,7 +323,6 @@
       Date:   Wed Mar 11 12:17:27 2015 +0100
 
           Use 'world' as default user name.
-
           </code></pre>
         </section>
 
@@ -335,6 +334,59 @@
       27bebdc Use 'world' as default user name.
       0c6bbfb Allow to pass user name as an argument.
       1f73498 Initial commit.
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Switch to a different branch</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git checkout -b documentation
+      Switched to a new branch 'documentation'
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Add documentation and commit</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      &lt;?php
+        /**
+         * @file
+         * Greet the user.
+         */
+
+        // Use 'world' as default name.
+        $name = !empty($argv[1]) ? $argv[1] : 'world';
+        echo "Hello $name!\n";
+      ?&gt;
+          </code></pre>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git add -p
+      $ git commit -m "Add documentation."
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Switch branches</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git checkout master
+      Switched to branch 'master'
+
+      $ git status
+      On branch master
+      nothing to commit, working directory clean
+
+      $ cat hello.php
+          </code></pre>
+        </section>
+
+        <section data-background="#692a49">
+          <h3>Merge documentation in master</h3>
+          <pre><code data-trim contenteditable class="tiny">
+      $ git merge documentation
+      Updating d358183..64e5ccf
+      Fast-forward
+       hello.php | 5 +++++
+       1 file changed, 5 insertions(+)
           </code></pre>
         </section>
       </div>
